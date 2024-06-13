@@ -1,0 +1,153 @@
+{% extends 'partials/base.html' %} {% load static %} {% block content %}
+
+<div class="container">
+  <div class="d-flex flex-col justify-content-between pb-1 mb-2 border-bottom ">
+
+      <nav aria-label="breadcrumb">
+          <ol class="breadcrumb ">
+              <li class="breadcrumb-item ">
+                  <a href="{% url 'incomes'%}" class="text-dark font-weight-bold">Incomes</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">My Incomes</li>
+          </ol>
+      </nav>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center  ">
+
+          <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group me-2">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                     <a href="{% url 'export-csv' %}" class="btn btn-sm">Export To CSV</a>
+
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                      <a href="{% url 'export-pdf' %}" class="btn btn-sm">Export To Excel</a>
+
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                    Export To PDF
+                  </button>
+              </div>
+
+          </div>
+      </div>
+
+
+
+
+  </div>
+
+  <div class="container mt-5">
+      {% include 'partials/_messages.html'%}
+      <div class="mb-3">
+          <div class="flex-row justify-content-between d-flex">
+              <div class="form-group">
+                  <input type="text" class="form-control px-3 py-2" placeholder="Search" id="searchField">
+              </div>
+              <div class="ml-3">
+                  <a href="{% url 'add-incomes' %}" class="btn btn-outline-success my-2 my-sm-0">Add incomes</a>
+              </div>
+          </div>
+      </div>
+
+      <table class="table table-hover table-striped" id="expensesTable">
+          <thead>
+              <tr>
+                  <th>Amount {{currency}}</th>
+                  <th>Source</th>
+                  <th>Description</th>
+                  <th>Date</th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for income in page_obj %}
+              <tr>
+                  <td>{{income.amount}}</td>
+                  <td>{{income.source}}</td>
+                  <td>{{income.description}}</td>
+                  <td>{{income.date}}</td>
+                  <td class="">
+                      <a href="{% url 'edit-incomes' income.id %}" class="btn "><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
+                          <path fill="#198754" d="M3 21v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15t.775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM17.6 7.8L19 6.4L17.6 5l-1.4 1.4z" />
+                      </svg></a>
+                  </td>
+                  <td>
+                      <a href="{% url 'delete-incomes' income.id %}" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
+                          <path fill="#f03d3d" d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zm2-4h2V8H9zm4 0h2V8h-2z" />
+                      </svg></a>
+                  </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+
+      <div class="output-table">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>Amount {{currency}}</th>
+                      <th>Category</th>
+                      <th>Description</th>
+                      <th>Date</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody class="table-body">
+
+              </tbody>
+          </table>
+      </div>
+
+
+      <div class="pagination-container ">
+          <div class="d-flex flex-row justify-content-between">
+
+              <div class="d-flex flex-row  justify-content-between">
+                  Showing page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+              </div>
+              <div>
+                  <ul class="pagination align-right float-right mr-auto">
+                      {% if page_obj.has_previous %}
+                      <li class="page-item {% if page_obj.number == 1 %}active{% endif %}">
+                          <a class="page-link" href="?page=1">&laquo; 1</a>
+                      </li>
+                      <li class="page-item">
+                          <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                      </li>
+                      {% endif %} {% if page_obj.has_next %}
+                      <li class="page-item">
+                          <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                      </li>
+                      <li class="page-item">
+                          <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }} &raquo;</a>
+                      </li>
+                      {% endif %}
+                  </ul>
+              </div>
+          </div>
+      </div>
+
+  </div>
+  <div class=" w-100  d-flex flex-row mt-5 mb-5 justify-content-between">
+
+      <div class="container  bg-light mx-3 d-flex flex-column align-items-center">
+          <h3 class="my-3">Incomes Summary Chart </h3>
+          <div>
+
+              <canvas id="expensesChart" width="350" height="350" class="my-3"></canvas>
+          </div>
+      </div>
+      <div class="container  bg-light d-flex flex-column align-items-center justify-content-center">
+          <h3 class="my-3">Incomes Summary Chart </h3>
+          <canvas id="expensesChart1" width="400" height="200" class="py-2"></canvas>
+      </div>
+
+
+  </div>
+</div>
+
+
+<script src="{% static 'C:\Users\pc\Desktop\expenses_project\expenses\expenses\static\js\IncomeChart1.js'%}"></script>
+<script src="{% static 'C:\Users\pc\Desktop\expenses_project\expenses\expenses\static\js\IncomeChart2.js'%}"></script>
+<script src="{% static 'C:\Users\pc\Desktop\expenses_project\expenses\expenses\static\js\searchIncome.js'%}"></script>
+{% endblock content %}

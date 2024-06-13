@@ -1,0 +1,151 @@
+{% extends 'partials/base.html' %} {% load static %} {% block content %}
+
+<div class="container">
+    <div class="d-flex flex-col justify-content-between  my-4 border-bottom ">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb ">
+                <li class="breadcrumb-item ">
+                    <a href="{% url 'expenses'%}" class="text-dark font-weight-bold">Account</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Profile</li>
+            </ol>
+        </nav>
+
+
+
+
+
+    </div>
+    {% include 'partials/_messages.html'%}
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container">
+        <div class="row flex-lg-nowrap">
+
+
+            <div class="col">
+                <form action=" {% url 'edit' %} " method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="e-profile">
+                                        <div class="row">
+                                            <div class="col-12 col-sm-auto mb-3">
+                                                <div class="mx-auto" style="width: 140px;">
+                                                    <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; ">
+                                                        {% if user.profile.profile_image %}
+                                                        <img src="{{ user.profile.profile_image.url }}" style="height: 140px;   width: 150px; 
+                                                        height: 150px;
+                                                        border-radius: 50%;
+                                                        object-fit: cover;"> {% else %}
+                                                        <img src="{{ MEDIA_URL }}profile_picture/default.jpg" style="height: 140px;"> {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                                <div class="text-sm-left mb-2 mb-sm-0">
+                                                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user.username}}</h4>
+
+                                                    <p class="mb-0">{{user.email}}</p>
+                                                    <div class="text-muted"><small>Last seen 2 hours ago</small></div>
+                                                    <div class="mt-2">
+                                                        <label class="btn btn-primary" for="profile_image">Upload image</label>
+                                                        <input class="d-none btn btn-primary" type="file" id="profile_image" name="profile_image">
+
+                                                    </div>
+                                                </div>
+                                                <div class="text-center text-sm-right">
+                                                    <span class="badge badge-secondary">administrator</span>
+                                                    <div class="text-muted"><small>{{created_at }}</small></div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        {% csrf_token %}
+                                        <div class="tab-content pt-3">
+                                            <div class="tab-pane active">
+                                                <form class="form" novalidate="">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="row">
+
+                                                                <div class="col ">
+                                                                    <div class="form-group my-2">
+                                                                        <label class="mb-1">Username</label>
+                                                                        <input class="form-control" type="text" name="username" placeholder="johnny.s" value="{{user.username}}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group my-2">
+                                                                        <label class="mb-1">Email</label>
+                                                                        <input class="form-control" type="text" placeholder="user@example.com" name="email" value="{{user.email}}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12 col-sm-6 mb-3">
+                                                            <div class="my-2"><b>Change Password</b></div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label class="mb-1">Current Password</label>
+                                                                        <input class="form-control" type="password" placeholder="••••••" name="current_password">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label class="mb-1">New Password</label>
+                                                                        <input class="form-control" type="password" placeholder="••••••" name="new_password">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label class="mb-1">Confirm <span class="d-none d-xl-inline">Password</span></label>
+                                                                        <input class="form-control" type="password" placeholder="••••••" name="new_password2"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col d-flex justify-content-end">
+                                                            <button class="btn btn-primary" type="submit">Save Changes</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</form>
+
+</div>
+
+<script src="{% static 'C:\Users\pc\Desktop\expenses_project\expenses\expenses\static\js\searchExp.js'%}"></script>
+
+{% endblock content %}
