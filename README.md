@@ -27,23 +27,17 @@ The Django Expenses Project is a web application designed to help users manage t
 ### Dashboard
 ![Dashboard](screenshots/Expenses.PNG)
 
-### Add Expense
-![Add Expense](path/to/add_expense.png)
+### Edit Expense or Income
+![Dashboard](screenshots/Edit.PNG)
 
-### View Expenses
-![View Expenses](path/to/view_expenses.png)
+### View Summary
+![View Expenses](screenshots/Summary.PNG)
 
-### Income Management
-![Income Management](path/to/income_management.png)
-
-### Budget Tracking
-![Budget Tracking](path/to/budget_tracking.png)
-
-### Diagrams
-![Diagrams](path/to/diagrams.png)
+### Pereferences
+![Pereferences](screenshots/pereferences.PNG)
 
 ### Account Management
-![Account Management](path/to/account_management.png)
+![Account Management](screenshots/profile_edit.PNG)
 
 ## Technologies
 - **Backend:** Python, Django
