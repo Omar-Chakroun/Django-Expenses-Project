@@ -15,7 +15,6 @@ The Django Expenses Project is a web application designed to help users manage t
 ## Features
 - **Expense and Income Management:** Users can add, edit, and delete their expenses and incomes.
 - **Spending Tracking:** The app tracks spending over time and categorizes expenses for better insights.
-- **Budgeting:** Users can set budgets and get notifications when they approach or exceed their limits.
 - **Visual Diagrams:** The app uses Chart.js to display various diagrams, helping users visualize their financial data.
 - **Account Management:** Users can update their username, email, and password.
 
@@ -48,7 +47,7 @@ The Django Expenses Project is a web application designed to help users manage t
 
 ## Technologies
 - **Backend:** Python, Django
-- **Frontend:** Bootstrap
+- **Frontend:** Bootstrap,JavaScript
 - **APIs:** RESTful API
 - **Charts:** Chart.js
 
