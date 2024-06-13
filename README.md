@@ -25,7 +25,7 @@ The Django Expenses Project is a web application designed to help users manage t
 
 ## Screenshots
 ### Dashboard
-![Dashboard](path/to/dashboard.png)
+![Dashboard](screenshots/Expneses.png)
 
 ### Add Expense
 ![Add Expense](path/to/add_expense.png)
