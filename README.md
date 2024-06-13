@@ -34,7 +34,7 @@ The Django Expenses Project is a web application designed to help users manage t
 ![View Expenses](screenshots/Summary.PNG)
 
 ### Pereferences
-![Pereferences](screenshots/pereferences.PNG)
+![Pereferences](screenshots/pereferances.PNG)
 
 ### Account Management
 ![Account Management](screenshots/profile_edit.PNG)
