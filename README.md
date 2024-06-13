@@ -25,3 +25,7 @@ The Django Expenses Project is a web application designed to help users manage t
    ```bash
    git clone https://github.com/Omar-Chakroun/Django-Expenses-Project.git
    cd Django-Expenses-Project
+   Usage
+Access the application at http://127.0.0.1:8000/.
+Log in with your superuser account.
+Use the navigation bar to manage expenses, view spending, and update account information.
